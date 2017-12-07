@@ -2,7 +2,6 @@ package com.chinacloud.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.neo4j.ogm.annotation.GraphId;
-import org.neo4j.ogm.annotation.Index;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -13,8 +12,10 @@ import java.util.Set;
  * @date 2017/12/06
  **/
 
-public class Node {
+@NodeEntity(label = "table")
+public class StartTable {
 
+    @GraphId
     private Long id;
 
 //    @Index(unique=true,primary = true)
@@ -99,4 +100,8 @@ public class Node {
 //    public void setModel(String model) {
 //        this.model = model;
 //    }
+
+    @Relationship(type = "generate")
+    Set<RelationAttribute> relationAttributes;
+
 }

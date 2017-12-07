@@ -3,6 +3,9 @@ package com.chinacloud.domain;/**
  */
 
 import io.swagger.annotations.ApiModelProperty;
+import org.neo4j.ogm.annotation.EndNode;
+import org.neo4j.ogm.annotation.RelationshipEntity;
+import org.neo4j.ogm.annotation.StartNode;
 
 import java.util.ArrayDeque;
 
@@ -10,8 +13,15 @@ import java.util.ArrayDeque;
  * @author cyq
  * @date 2017/12/06
  **/
-
+@RelationshipEntity(type = "generate")
 public class RelationAttribute {
+
+    @StartNode
+    private StartTable startTable;
+
+    @EndNode
+    private EndTable endTable;
+
 
     private String key;
     private Object[] value;

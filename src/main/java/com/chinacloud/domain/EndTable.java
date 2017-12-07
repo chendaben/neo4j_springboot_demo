@@ -2,19 +2,17 @@ package com.chinacloud.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.neo4j.ogm.annotation.GraphId;
-import org.neo4j.ogm.annotation.Index;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
-
-import java.util.Set;
 
 /**
  * @author cyq
  * @date 2017/12/06
  **/
 
-public class Node {
+@NodeEntity(label = "table")
+public class EndTable {
 
+    @GraphId
     private Long id;
 
 //    @Index(unique=true,primary = true)

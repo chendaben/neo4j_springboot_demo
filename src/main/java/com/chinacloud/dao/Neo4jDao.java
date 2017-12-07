@@ -1,4 +1,6 @@
 package com.chinacloud.dao;
+import com.chinacloud.domain.Node;
+import com.chinacloud.domain.StartTable;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
@@ -9,7 +11,7 @@ import org.springframework.stereotype.Repository;
  **/
 
 @Repository
-public interface Neo4jDao  extends GraphRepository<Object> {
+public interface Neo4jDao  extends GraphRepository<Node> {
 
     /**
      * 查找
@@ -47,10 +49,12 @@ public interface Neo4jDao  extends GraphRepository<Object> {
 
 
     //TODO 查询
+    @Query("match (t:table) return t")
+    Iterable<StartTable> findTest();
 
+    @Override
+    Iterable<Node> findAll();
 
-    @Query(value = "match (n) return n")
-    Iterable<Object> getAll();
     //TODO 统计
 
 
