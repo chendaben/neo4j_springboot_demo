@@ -12,7 +12,7 @@ import java.util.Set;
  * @author cyq
  * @date 2017/12/06
  **/
-
+@NodeEntity(label = "table")
 public class Node {
 
     private Long id;

@@ -1,9 +1,13 @@
 package com.chinacloud.dao;
 import com.chinacloud.domain.Node;
-import com.chinacloud.domain.StartTable;
+import com.chinacloud.domain.RelationAttribute;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
+import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.stream.Stream;
+
 
 /**
  * @author Administrator
@@ -11,7 +15,7 @@ import org.springframework.stereotype.Repository;
  **/
 
 @Repository
-public interface Neo4jDao  extends GraphRepository<Node> {
+public interface Neo4jDao  extends Neo4jRepository<Node,Long> {
 
     /**
      * 查找
@@ -49,13 +53,21 @@ public interface Neo4jDao  extends GraphRepository<Node> {
 
 
     //TODO 查询
-    @Query("match (t:table) return t")
-    Iterable<StartTable> findTest();
 
-    @Override
-    Iterable<Node> findAll();
+    @Query("match (s:table) return s")
+    Stream<Node> getAllTable();
 
-    //TODO 统计
+
+    /**
+     * 根据id查询结点属性
+     * @param id
+     * @return
+     */
+    @Query("match (s:table{id:{0}}) return s")
+    Node findByNodeName(String id);
+
+    @Query("match [r] where id(r)= {0} return r")
+    RelationAttribute findByRelationId(Long id);
 
 
 

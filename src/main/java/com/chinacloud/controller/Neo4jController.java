@@ -4,7 +4,6 @@ package com.chinacloud.controller;/**
 
 import com.chinacloud.domain.Node;
 import com.chinacloud.domain.RelationAttribute;
-import com.chinacloud.domain.StartTable;
 import com.chinacloud.service.Neo4jService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,8 +42,8 @@ public class Neo4jController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "获取整个图api")
-    public Iterable<StartTable> getAll(){
-        return neo4jService.getAll();
+    public void getAll(){
+        neo4jService.getAll();
     }
 
     @RequestMapping(value = "/node/{id}",method = RequestMethod.GET)

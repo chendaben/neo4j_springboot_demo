@@ -17,10 +17,10 @@ import java.util.ArrayDeque;
 public class RelationAttribute {
 
     @StartNode
-    private StartTable startTable;
+    private Node startTable;
 
     @EndNode
-    private EndTable endTable;
+    private Node endTable;
 
 
     private String key;
