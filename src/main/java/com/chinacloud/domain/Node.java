@@ -1,10 +1,8 @@
 package com.chinacloud.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
-import org.neo4j.ogm.annotation.GraphId;
-import org.neo4j.ogm.annotation.Index;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.*;
 
 import java.util.Set;
 
@@ -15,17 +13,19 @@ import java.util.Set;
 @NodeEntity(label = "table")
 public class Node {
 
+    @GraphId
     private Long id;
 
-//    @Index(unique=true,primary = true)
-//    private String tableId;
+    @Index(unique = true, primary = true)
+    private String tableId;
 
     private String name;
     private String type;
+
     private String datasource;
     private Integer port;
     private String database;
-//    private String model;
+    private String model;
 
 
     public Long getId() {
@@ -36,15 +36,15 @@ public class Node {
         this.id = id;
     }
 
-//    @ApiModelProperty(name = "tableId(type/datasource:port/database_model_name)", example =
-//            "mysql//172.16.50.21:3306/test_test_student")
-//    public String getTableId() {
-//        return tableId;
-//    }
-//
-//    public void setTableId(String tableId) {
-//        this.tableId = tableId;
-//    }
+    @ApiModelProperty(name = "tableId(type/datasource:port/database_model_name)", example =
+            "mysql//172.16.50.21:3306/test_test_student")
+    public String getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(String tableId) {
+        this.tableId = tableId;
+    }
 
     @ApiModelProperty(name = "表名称", example = "student")
     public String getName() {
@@ -91,12 +91,23 @@ public class Node {
         this.database = database;
     }
 
-//    @ApiModelProperty(name = "表所属模式", example = "test",required = false)
-//    public String getModel() {
-//        return model;
-//    }
-//
-//    public void setModel(String model) {
-//        this.model = model;
-//    }
+    @ApiModelProperty(name = "表所属模式", example = "test", required = false)
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    @Relationship(type = "generate")
+    private Set<GenerateRelation> generateRelations;
+
+    public Set<GenerateRelation> getGenerateRelations() {
+        return generateRelations;
+    }
+
+    public void setGenerateRelations(Set<GenerateRelation> generateRelations) {
+        this.generateRelations = generateRelations;
+    }
 }

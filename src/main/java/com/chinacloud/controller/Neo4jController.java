@@ -3,7 +3,7 @@ package com.chinacloud.controller;/**
  */
 
 import com.chinacloud.domain.Node;
-import com.chinacloud.domain.RelationAttribute;
+import com.chinacloud.domain.GenerateRelation;
 import com.chinacloud.service.Neo4jService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class Neo4jController {
     public void create(@ApiParam(value = "起始结点") @RequestBody Node beginNode,
                        @ApiParam(value = "结束结点") @RequestBody Node endNode,
                        @ApiParam(value = "关系名称") @RequestParam String relationName,
-                       @ApiParam(value = "关系属性") @RequestBody List<RelationAttribute> relationAttributeList){
+                       @ApiParam(value = "关系属性") @RequestBody List<GenerateRelation> generateRelationList){
 
     }
 
@@ -42,8 +43,10 @@ public class Neo4jController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "获取整个图api")
-    public void getAll(){
-        neo4jService.getAll();
+    public Iterable<Node> getAll(){
+        Iterable<Node> nodes=neo4jService.getAll();
+
+        return nodes;
     }
 
     @RequestMapping(value = "/node/{id}",method = RequestMethod.GET)
