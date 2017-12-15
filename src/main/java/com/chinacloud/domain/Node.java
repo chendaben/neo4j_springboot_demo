@@ -99,7 +99,7 @@ public class Node {
     public void setModel(String model) {
         this.model = model;
     }
-
+    /** 拥有关系*/
     @Relationship(type = "generate")
     private Set<GenerateRelation> generateRelations;
 

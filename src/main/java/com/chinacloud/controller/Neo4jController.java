@@ -37,7 +37,7 @@ public class Neo4jController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @ApiOperation(value = "删除api")
-    public void delete(@ApiParam(value = "结点id列表") @RequestBody List<String> nodeIds){
+    public void delete(@ApiParam(value = "结点tableId列表") @RequestBody List<String> tableIds){
 
     }
 
@@ -51,8 +51,9 @@ public class Neo4jController {
 
     @RequestMapping(value = "/node/{id}",method = RequestMethod.GET)
     @ApiOperation(value = "获取单个结点属性api")
-    public void getNodeInfo(@ApiParam(value = "id") @RequestParam  String id){
-
+    public Node getNodeInfo(@ApiParam(value = "id") @RequestParam  String id){
+        Node node = neo4jService.getNodeInfo(id);
+        return node;
     }
 
     @RequestMapping(value = "/relation",method = RequestMethod.GET)

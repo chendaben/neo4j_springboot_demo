@@ -36,7 +36,7 @@ public class GenerateRelation {
         this.id = id;
     }
 
-    @ApiModelProperty(name = "键",example = "filed")
+    @ApiModelProperty(name = "属性",example = "filed")
     public String getKey() {
         return key;
     }

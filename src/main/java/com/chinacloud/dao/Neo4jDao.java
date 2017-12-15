@@ -47,7 +47,7 @@ public interface Neo4jDao extends Neo4jRepository<Node,Long> {
      * @param type
      */
     @Query("create (n:table{name:{0},type:{1}) return n")
-    void inserTabletNode(String name,String type);
+    void insertTabletNode(String name,String type);
 
     /**
      * 删除结点
